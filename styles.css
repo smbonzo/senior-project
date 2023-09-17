@@ -1,0 +1,14 @@
+iframe {
+    width: 100%;
+    height: 80vh;
+}
+
+.links {
+    border-color: black;
+    border-width: 2px;
+    border-block-style: solid;
+    margin-bottom: 10px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+}
