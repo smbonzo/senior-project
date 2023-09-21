@@ -2,25 +2,27 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="header.js"></script>
+        <script>
+            includeHeader('header');
+        </script> 
     </head>
     <body>
-        <h1>
-            Partially Hydrated devs
-        </h1>
-        <h2>
-            SUNY Oswego - Ph.D. Candidate Search Engine and Database
-        </h2>
-
-        <nav class="links">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="weekly4ups.html">Weekly 4-Ups</a></li>
-				<li><a href="agenda.html">Agenda</a></li>
-				<li><a href="timesheet.html">Timesheet</a></li>
-			</ul>
-		</nav>
+        <header id="header"></header>
 		
-		<!-- homepage content here -->
+		<h2>Project Synopsis</h2>
+        <p>
+            For this project, we are developing a PHd Candidate Search Engine and Database for Suny Oswego. 
+            First, the team will get information on PHD candidates from SUNY and possibly other sources. 
+            Once the data is retrieved, we shall organize and store the details per respective candidate into 
+            our database schema. Later, the system will then email and offer to give other candidates the chance 
+            to create their own profiles, if they so choose to do so.
+            For the website itself, it will function almost as a reverse job board. Candidates will put in their 
+            information and SUNY Oswego (and possibly other universities) will be able to search through those 
+            candidates. They will be able to use several filters such as graduation year, research speciality, 
+            degree, intended/requested key topics, requirements, experiences, skills, etc. 
+        </p>
 		
     </body>
 </html>
