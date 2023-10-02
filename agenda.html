@@ -4,16 +4,17 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="header.js"></script>
+        <script src="iframe.js"></script>
         <script>
             includeHeader('header');
         </script> 
     </head>
     <body>
         <header id="header"></header>
-
-        <div>
-            <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTzqwp7xmTaZQ3SPgx9-WRUWCHFRrzTNqkmVWr8f9J04rfxY1zYMCyMh5JWDXd3CndTeLEgj78LzFR6/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <div class="body-content">
+            <div id="iframe" src="https://docs.google.com/presentation/d/e/2PACX-1vTzqwp7xmTaZQ3SPgx9-WRUWCHFRrzTNqkmVWr8f9J04rfxY1zYMCyMh5JWDXd3CndTeLEgj78LzFR6/embed?start=false&loop=false&delayms=60000"></div>
         </div>
-
     </body>
+
+    <footer id="footer"></footer>
 </html>

@@ -1,19 +1,34 @@
 $(document).ready(function() {  
     $('#header').append(
-        '<h1>' +
-            'Partially Hydrated devs' +
-        '</h1>' +
-        '<h2>' +
-            'SUNY Oswego - Ph.D. Candidate Search Engine and Database' +
-        '</h2>' +
+        `
+        <div class="header-top-bar"></div>
+        <div class="header-container">
+            <div class="header-text mercury">
+                <h1 class="title">
+                    Career Readiness Dashboard
+                </h1>
+                <h3>
+                    SUNY Oswego
+                </h3>
+                <h3>
+                    Partially Hydrated devs
+                </h3>
+            </div>
 
-        '<nav class="links">' +
-            '<ul>' +
-                '<li><a href="index.html">Home</a></li>' +
-                '<li><a href="weekly4ups.html">Weekly 4-Ups</a></li>' +
-                '<li><a href="agenda.html">Agenda</a></li>' +
-                '<li><a href="timesheet.html">Timesheet</a></li>' +
-            '</ul>' +
-        '</nav>'
+            <nav class="links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="weekly4ups.html">Weekly 4-Ups</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="timesheet.html">Timesheet</a></li>
+                </ul>
+            </nav>
+        </div>`
+    );
+
+    $("#footer").append(
+        `<div class="footer-container">
+            Partially Hydrated devs - ${new Date().getFullYear()}
+        </div>`
     );
 });
