@@ -21,6 +21,8 @@ $(document).ready(function() {
                     <li><a href="weekly4ups.html">Weekly 4-Ups</a></li>
                     <li><a href="agenda.html">Agenda</a></li>
                     <li><a href="timesheet.html">Timesheet</a></li>
+                    <li><a href="risks.html">Risks</a></li>
+                    <li><a href="metrics.html">Metrics</a></li>
                 </ul>
             </nav>
         </div>`
