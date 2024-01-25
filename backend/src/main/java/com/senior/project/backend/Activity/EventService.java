@@ -2,9 +2,7 @@ package com.senior.project.backend.Activity;
 
 import com.senior.project.backend.domain.Event;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Service
 public class EventService {
@@ -13,9 +11,9 @@ public class EventService {
 
     public EventService(EventRepository eventRepository) { this.eventRepository = eventRepository;}
     public Flux<Event> all() {
-        return Flux.fromIterable(eventRepository.findAll());
+        return eventRepository.findAll();
     }
     public Flux<Event> dashboard() {
-        return Flux.fromIterable(eventRepository.findAll()); //same as /events for now
+        return eventRepository.findAll(); //same as /events for now
     }
 }

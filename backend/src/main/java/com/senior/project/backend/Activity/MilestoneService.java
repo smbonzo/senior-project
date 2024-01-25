@@ -14,10 +14,10 @@ public class MilestoneService {
 
     public MilestoneService(MilestoneRepository milestoneRepository) { this.milestoneRepository = milestoneRepository;}
     public Flux<Milestone> all() {
-        return Flux.fromIterable(milestoneRepository.findAll());
+        return milestoneRepository.findAll();
     }
 
     public Flux<Milestone> allWithTasks() {
-        return Flux.fromIterable(milestoneRepository.findAllWithTasks());
+        return milestoneRepository.findAll().map(());
     }
 }

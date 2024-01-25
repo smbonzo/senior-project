@@ -3,8 +3,6 @@ package com.senior.project.backend.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.senior.project.backend.domain.User;
-
 import reactor.core.publisher.Flux;
 
 /**
@@ -22,6 +20,6 @@ public class UserService {
      * @return all the users
      */
     public Flux<User> allUsers() {
-        return Flux.fromIterable(repository.findAll());
+        return repository.findAll();
     }
 }

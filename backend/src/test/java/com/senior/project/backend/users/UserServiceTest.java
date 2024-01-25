@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.senior.project.backend.Constants;
-import com.senior.project.backend.domain.User;
 
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;

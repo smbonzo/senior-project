@@ -1,11 +1,12 @@
 package com.senior.project.backend.domain;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
 import lombok.*;
 
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Generated
@@ -16,7 +17,6 @@ public class Task {
     private String description;
     private Boolean isRequired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn()
+    @Transient
     private Milestone milestone;
 }

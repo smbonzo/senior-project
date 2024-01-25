@@ -3,8 +3,9 @@ package com.senior.project.backend;
 import com.senior.project.backend.domain.Event;
 import com.senior.project.backend.domain.Milestone;
 import com.senior.project.backend.domain.Task;
-import com.senior.project.backend.domain.User;
 import com.senior.project.backend.domain.YearLevel;
+import com.senior.project.backend.users.User;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
