@@ -31,10 +31,13 @@ dependencies {
     implementation("com.google.api-client:google-api-client:1.32.1")
     implementation("com.google.code.gson:gson:2.10.1")
 
-    // Spring Boot Starter Data JPA
+    // Spring Boot Starter Data r2dbc
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    implementation("dev.miku:r2dbc-mysql:0.8.2.RELEASE")
+
     // Database driver
     implementation("mysql:mysql-connector-java:8.0.33")
+    
     // Flyway
     implementation("org.flywaydb:flyway-mysql")
     implementation("org.flywaydb:flyway-core")
