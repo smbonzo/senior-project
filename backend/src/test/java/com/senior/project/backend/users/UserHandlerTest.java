@@ -15,8 +15,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 
 import com.senior.project.backend.Constants;
-
-import reactor.core.publisher.Flux;
+import com.senior.project.backend.domain.User;
 
 @ExtendWith(MockitoExtension.class)
 public class UserHandlerTest {
@@ -38,7 +37,7 @@ public class UserHandlerTest {
 
     @Test
     public void testAllUsers() {
-        when(userService.allUsers()).thenReturn(Flux.fromIterable(Constants.USERS));
+        when(userService.allUsers()).thenReturn(Constants.USERS);
         List<User> res = webTestClient.get()
             .uri("/api/test")
             .exchange()
@@ -48,7 +47,7 @@ public class UserHandlerTest {
             .returnResult()
             .getResponseBody();
 
-        assertEquals(Constants.USERS.get(0), res.get(0));
-        assertEquals(Constants.USERS.get(1), res.get(1));
+        assertEquals(Constants._USERS.get(0), res.get(0));
+        assertEquals(Constants._USERS.get(1), res.get(1));
     }
 }

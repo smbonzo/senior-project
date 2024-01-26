@@ -24,7 +24,6 @@ public class MilestoneHandler {
             return ServerResponse.ok().body(this.milestoneService.all().map(Milestone::toDTO), MilestoneDTO.class );
         }
 
-
         return ServerResponse.ok().body(this.milestoneService.allWithTasks(), Milestone.class);
     }
 }

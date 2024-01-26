@@ -30,7 +30,7 @@ public class EventServiceTest {
         events.add(event1);
         events.add(event2);
 
-        when(eventRepository.findAll()).thenReturn(events);
+        when(eventRepository.findAll()).thenReturn(Flux.fromIterable(events));
         Flux<Event> result = eventService.all();
         StepVerifier.create(result).expectNext(event1).expectNext(event2).expectComplete().verify();
     }
@@ -48,7 +48,7 @@ public class EventServiceTest {
         events.add(event2);
         events.add(event3);
 
-        when(eventRepository.findAll()).thenReturn(events);
+        when(eventRepository.findAll()).thenReturn(Flux.fromIterable(events));
         Flux<Event> result = eventService.dashboard();
         StepVerifier.create(result).expectNext(event1).expectNext(event2).expectNext(event3).expectComplete().verify();
     }

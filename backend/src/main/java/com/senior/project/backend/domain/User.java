@@ -1,4 +1,4 @@
-package com.senior.project.backend.users;
+package com.senior.project.backend.domain;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;

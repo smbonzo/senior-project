@@ -16,6 +16,7 @@ public class Task {
     private String name;
     private String description;
     private Boolean isRequired;
+    private YearLevel yearLevel;
 
     @Transient
     private Milestone milestone;
