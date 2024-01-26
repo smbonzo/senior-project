@@ -6,6 +6,11 @@ import java.util.UUID;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Converts a UUID into a byte buffer
+ * 
+ * @author Jimmy Logan - jrl9984@rit.edu
+ */
 @Component
 public class UUIDToBytes implements Converter<UUID, ByteBuffer> {
     @Override
