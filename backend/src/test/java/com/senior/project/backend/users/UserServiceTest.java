@@ -1,10 +1,7 @@
 package com.senior.project.backend.users;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.senior.project.backend.Constants;
 import com.senior.project.backend.domain.User;
-
-import jakarta.persistence.EntityNotFoundException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -41,7 +36,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserByEmailHappy() {
-        when(userRepository.findUserByEmail(anyString())).thenReturn(Optional.of(Constants.user1));
+        when(userRepository.findUserByEmail(anyString())).thenReturn(Mono.just(Constants.user1));
         Mono<User> result = userService.findByEmailAddress(Constants.user1.getEmail());
         StepVerifier.create(result)
             .expectNext(Constants.user1)
@@ -51,13 +46,12 @@ public class UserServiceTest {
 
     @Test
     public void findUserByEmailUnhappy() {
-        when(userRepository.findUserByEmail(anyString())).thenReturn(Optional.empty());
+        when(userRepository.findUserByEmail(anyString())).thenReturn(Mono.empty());
 
-        try {
-            userService.findByEmailAddress(Constants.user1.getEmail());
-            fail("Error should have been thrown");
-        } catch (EntityNotFoundException e) {
-            return;
-        }
+        Mono<User> user = userRepository.findUserByEmail("test");
+
+        StepVerifier.create(user)
+            .expectComplete()
+            .verify();
     }
 }

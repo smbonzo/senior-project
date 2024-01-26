@@ -1,15 +1,17 @@
 package com.senior.project.backend.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
-@Getter
-@Setter
-@Entity
-@AllArgsConstructor
+import org.springframework.data.annotation.Id;
+
+@Data
+@ToString
+@SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 @Generated
 public class Event {
     @Id

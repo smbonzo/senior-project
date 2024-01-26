@@ -6,6 +6,7 @@ import com.senior.project.backend.domain.Task;
 import com.senior.project.backend.domain.User;
 import com.senior.project.backend.domain.YearLevel;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -128,7 +129,8 @@ public class Constants {
     public static User user1;
     public static User user2;
 
-    public static final List<User> USERS = new ArrayList<>();
+    public static final List<User> _USERS = new ArrayList<>();
+    public static final Flux<User> USERS;
 
     static {
         user1 = new User();
@@ -138,8 +140,10 @@ public class Constants {
         user2.setId(UUID.randomUUID());
         user2.setEmail("test2@test.com");
 
-        USERS.add(user1);
-        USERS.add(user2);
+        _USERS.add(user1);
+        _USERS.add(user2);
+
+        USERS = Flux.fromIterable(_USERS);
     }
 }
 

@@ -50,7 +50,7 @@ public class AuthService {
         // is expired
         if (expDate - System.currentTimeMillis() < minToMilli(20)) { 
             return findUserFromToken(token)
-                .switchIfEmpty(Mono.empty())
+                .switchIfEmpty(Mono.error(new TokenVerificiationException("No user.")))
                 .flatMap(this::generateResponse);
         } else {
             throw new TokenVerificiationException("Token does not need refreshed");

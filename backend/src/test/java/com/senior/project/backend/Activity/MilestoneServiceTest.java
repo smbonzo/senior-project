@@ -34,14 +34,14 @@ public class MilestoneServiceTest {
         List<Milestone> milestones = new ArrayList<>();
         milestones.add(milestone1);
         milestones.add(milestone2);
-        when(milestoneRepository.findAll()).thenReturn(milestones);
+        when(milestoneRepository.findAll()).thenReturn(Flux.fromIterable(milestones));
         Flux<Milestone> result = milestoneService.all();
         StepVerifier.create(result).expectNext(milestone1).expectNext(milestone2).expectComplete().verify();
     }
 
     @Test
     public void testAllWithTasks() {
-        when(milestoneRepository.findAll()).thenReturn(Constants.milestoneDATA);
+        when(milestoneRepository.findAll()).thenReturn(Flux.fromIterable(Constants.milestoneDATA));
         Flux<Milestone> result = milestoneService.all();
         StepVerifier.create(result).expectNext(Constants.milestoneDATA.get(0)).expectNext(Constants.milestoneDATA.get(1)).expectComplete().verify();
     }
