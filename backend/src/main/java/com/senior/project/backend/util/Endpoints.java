@@ -1,6 +1,8 @@
 package com.senior.project.backend.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -8,26 +10,27 @@ import java.util.Map;
  */
 public enum Endpoints {
     // Domain
-    EVENTS("events", true),
-    DASHBOARD_EVENTS("dashboard_events", true),
-    MILSTONES("milestones", true),
-    TASKS("tasks", true),
-    RESUME("portfolio/resume", true),
+    EVENTS(true, "events"),
+    DASHBOARD_EVENTS(true,"dashboard_events"),
+    MILSTONES(true,"milestones"),
+    TASKS(true,"tasks"),
+    RESUME(true, "portfolio", "resume"),
 
     // Security
-    SIGNIN("auth/signin", false),
-    REFRESH("auth/refresh", true),
-    FAILURE("auth/fail", false),
+    SIGNIN(true, "auth", "signin"),
+    REFRESH(true, "auth", "refresh"),
+    FAILURE(true, "auth", "fail"),
 
     // Test -- ONLY USE FOR UNIT TESTS --
-    TEST_NEEDS_AUTH("test/yes", true),
-    TEST_NO_AUTH("tests/no", false);
+    TEST_NEEDS_AUTH(true, "test", "yes"),
+    TEST_NO_AUTH(false, "test", "no"),
+    TEST_PATH_PARAM(false, "test", "{param}", "test");
 
-    private String value;
+    private List<String> segments;
     private boolean needsAuthentication;
 
-    private Endpoints(String value, boolean needsAuthentication) {
-        this.value = "/api/" + value;
+    private Endpoints(boolean needsAuthentication, String... segments) {
+        this.segments = Arrays.asList(segments);
         this.needsAuthentication = needsAuthentication;
     }
 
@@ -36,7 +39,9 @@ public enum Endpoints {
     //
 
     public String uri() {
-        return value;
+        StringBuilder sb = new StringBuilder();
+        segments.stream().forEach((s) -> sb.append(s));
+        return sb.toString();
     }
 
     public boolean getNeedsAuthentication() {
