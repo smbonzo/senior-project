@@ -21,9 +21,9 @@ export class Task {
     this.needsArtifact = json.needsArtifact;
     this.taskID = json.id;
     this.isRequired = json.isRequired;
-    // TODO this should be checked through the submission object or provided by the backend later
+    // TODO: this should be checked through the submission object or provided by the backend later
     this.isComplete = true;
-    // TODO replace with constructor call when we add submission objects
+    // TODO: replace with constructor call when we add submission objects
     this.submission = json.submission;
     this.yearLevel = json.yearLevel;
     this.milestoneID = json.milestoneID;
