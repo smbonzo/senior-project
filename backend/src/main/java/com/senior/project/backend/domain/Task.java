@@ -19,6 +19,7 @@ public class Task {
     private YearLevel yearLevel;
     private String taskType;
     private String artifactName;
+    private Long milestoneID;
 
     @Transient
     private Milestone milestone;

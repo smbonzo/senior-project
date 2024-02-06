@@ -43,7 +43,7 @@ public class MilestoneService {
         
         return Flux.zip(milestoneRepository.findAll(), tasks, (milestone, taskList) -> {
             milestone.setTasks(taskList.stream()
-                .filter((t) -> t.getId() == milestone.getId())
+                .filter((t) -> t.getMilestoneID() == milestone.getId())
                 .toList()
             );
             return milestone;

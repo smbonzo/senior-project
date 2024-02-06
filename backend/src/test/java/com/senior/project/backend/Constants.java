@@ -72,6 +72,7 @@ public class Constants {
                 YearLevel.Freshman,
                 "artifact",
                 "Meeting Notes",
+                1L,
                 m1
                 //,null
                 );
@@ -83,6 +84,7 @@ public class Constants {
                 YearLevel.Freshman,
                 "artifact",
                 "Degreeworks Result",
+                1L,
                 m1
                 //,null
                 );
@@ -94,6 +96,7 @@ public class Constants {
                 YearLevel.Freshman,
                 "artifact",
                 "Registration PIN",
+                1L,
                 m1
                 //,null
                 );
