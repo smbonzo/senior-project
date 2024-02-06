@@ -1,22 +1,20 @@
 package com.senior.project.backend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import org.springframework.data.annotation.Id;
 
 @Data
 @ToString
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Generated
-@Getter
-@Setter
-@Entity
 public class Artifact {
+    @Id
+    private Long id;
 
-	@Id
-    private int id;
-
-	private String name;
-	private String fileLocation;
+    private String name;
+    private String fileLocation;
 }

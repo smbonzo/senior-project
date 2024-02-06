@@ -1,11 +1,12 @@
 package com.senior.project.backend.domain;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
 import lombok.*;
 
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Generated
@@ -15,16 +16,14 @@ public class Task {
     private String name;
     private String description;
     private Boolean isRequired;
-    @Enumerated(EnumType.STRING)
     private YearLevel yearLevel;
     private String taskType;
     private String artifactName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn()
+    @Transient
     private Milestone milestone;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private Event event;
+    //@OneToOne(fetch = FetchType.EAGER)
+    //@JoinColumn
+    //private Event event;
 }

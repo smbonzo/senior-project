@@ -40,7 +40,7 @@ public class ArtifactServiceTest {
 
     @Test
     public void testProcessFile() throws NoSuchFieldException, IllegalAccessException {
-        when(artifactRepository.save(any())).thenReturn(new Artifact());
+        when(artifactRepository.save(any())).thenReturn(Mono.just(new Artifact()));
 
         FilePart filePart = mock(FilePart.class);
 

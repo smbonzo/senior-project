@@ -30,7 +30,7 @@ public class TaskServiceTest {
         tasks.add(task1);
         tasks.add(task2);
 
-        when(taskRepository.findAll()).thenReturn(tasks);
+        when(taskRepository.findAll()).thenReturn(Flux.fromIterable(tasks));
         Flux<Task> result = taskService.all();
         StepVerifier.create(result).expectNext(task1).expectNext(task2).expectComplete().verify();
     }

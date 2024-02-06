@@ -13,6 +13,7 @@ public enum Endpoints {
     MILSTONES("milestones", true),
     TASKS("tasks", true),
     RESUME("portfolio/resume", true),
+    USERS("users", true),
 
     // Security
     SIGNIN("auth/signin", false),
