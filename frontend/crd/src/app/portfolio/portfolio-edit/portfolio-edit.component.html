@@ -1,0 +1,11 @@
+<div id="modal-content-wrapper">
+    <form [formGroup]="eventForm" class="mat-dialog-content" (ngSubmit)="saveEvent()">
+        <div *ngIf="eventName == ''">
+            <h4>Create New Event</h4>
+            <mat-form-field *ngIf="eventName == ''">
+                <mat-label>Event Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+    </form>
+</div>
