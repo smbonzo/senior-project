@@ -37,6 +37,7 @@ public enum Endpoints {
     UPDATE_ROLES("users/roles", true, Role.Faculty),
     SEARCH_USERS("users/search", true, Role.Faculty),
     PORTFOLIO("portfolio", true),
+    EDIT_PORTFOLIO("edit-portfolio", true),
 
     // Submissions
     SUBMISSION("tasks/submission", true),
