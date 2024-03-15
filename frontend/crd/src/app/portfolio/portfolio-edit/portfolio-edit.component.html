@@ -1,5 +1,5 @@
 <div id="modal-content-wrapper">
-    <form [formGroup]="eventForm" class="mat-dialog-content" (ngSubmit)="saveEvent()">
+    <form [formGroup]="portfolioForm" class="mat-dialog-content" (ngSubmit)="savePortfolio()">
         <h4>Editing Portfolio</h4>
         <mat-form-field>
             <mat-label>Name</mat-label>
@@ -13,41 +13,41 @@
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
-        <!-- <mat-form-field>
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
-        <!-- <br /> -->
         <mat-form-field>
-          <mat-label>Event Description</mat-label>
-          <textarea matInput formControlName="description"></textarea>
+            <mat-label>Email</mat-label>
+            <textarea matInput formControlName="email"></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Event Location</mat-label>
-          <input matInput formControlName="location">
+            <mat-label>Phone</mat-label>
+            <textarea matInput formControlName="phone"></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Event Organizer</mat-label>
-          <input matInput formControlName="organizer">
+            <mat-label>LinkedIn</mat-label>
+            <textarea matInput formControlName="linkedin"></textarea>
+        </mat-form-field>
+        <!-- List all majors with option to edit, add, or delete -->
+        <!-- List all minors with option to edit, add, or delete -->
+        <mat-form-field>
+            <mat-label>University ID</mat-label>
+            <textarea matInput formControlName="university_id"></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Event Link</mat-label>
-          <input matInput formControlName="link">
-          <mat-hint align="end">Link to the event on the SUNY calendar or other external site</mat-hint>
+            <mat-label>GPA</mat-label>
+            <textarea matInput formControlName="gpa"></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Event Button Label</mat-label>
-          <input matInput formControlName="buttonLabel">
-          <mat-hint align="end">Label the link like "Explore" or "Get Involved"</mat-hint>
+            <mat-label>School Year</mat-label>
+            <textarea matInput formControlName="school_year"></textarea>
         </mat-form-field>
-        <mat-checkbox formControlName="recurring">
-            This is a Recurring Event
-        </mat-checkbox>
+        <!-- List all skills with option to add or delete -->
+        <!-- List all language skills with option to add or delete -->
+        <!-- List all projects with option to edit, add, or delete -->
+        <!-- List all jobs with option to edit, add, or delete -->
+        <!-- List all coops with option to edit, add, or delete -->
+        <!-- List all clubs with option to edit, add, or delete -->
+        <!-- List all interests with option to edit, add, or delete -->
         <br />
-        <button mat-button type="submit" [disabled]="!eventForm.status">Submit</button>
+        <button mat-button type="submit" [disabled]="!portfolioForm.status">Submit</button>
     </form>
     <footer id="modal-footer">
         <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">

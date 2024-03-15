@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Injectable, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Event } from "../../../domain/Event";
+import { User } from "../../security/domain/user";
 import { Endpoints, constructBackendRequest } from 'src/app/util/http-helper';
 
 
@@ -14,8 +14,8 @@ import { Endpoints, constructBackendRequest } from 'src/app/util/http-helper';
 @Injectable()
 export class PortfolioEditComponent implements OnInit {
 
-  eventForm!: FormGroup;
-  public currentEvent: Event | undefined;
+  portfolioForm!: FormGroup;
+  public currentUser: User | undefined;
   public name: string = '';
 
 
@@ -31,34 +31,19 @@ export class PortfolioEditComponent implements OnInit {
   }
 
   /**
-   * Creates the FormGroup either using the provided event data or blank
+   * Creates the FormGroup either using the provided portfolio data or blank
    */
   createForm() {
-    if (this.currentEvent) {
-      this.eventForm = this.formBuilder.group({
-        name: [this.name],
-        preferredName: [this.currentEvent.date],
-        description: [this.currentEvent.description],
-        location: [this.currentEvent.location],
-        organizer: [this.currentEvent.organizer],
-        link: [this.currentEvent.eventLink],
-        buttonLabel: [this.currentEvent.buttonLabel],
-        recurring: [this.currentEvent.isRecurring],
-      });
-    }
-
-    else {
-      this.eventForm = this.formBuilder.group({
-        name: [null, Validators.required],
-        date: [null, Validators.required],
-        description: [null],
-        location: [null, Validators.required],
-        organizer: [null, Validators.required],
-        link: [null],
-        buttonLabel: ['More Info'],
-        recurring: [false],
-      });
-    }
+    this.portfolioForm = this.formBuilder.group({
+      name: [null, Validators.required],
+      preferredName: [null, Validators.required],
+      description: [null],
+      location: [null, Validators.required],
+      organizer: [null, Validators.required],
+      link: [null],
+      buttonLabel: ['More Info'],
+      recurring: [false],
+    });
   }
 
 
@@ -67,87 +52,32 @@ export class PortfolioEditComponent implements OnInit {
   }
 
   /**
-   * Takes event data from the form and sends the POST request
-   * Either update event or create event, depending on whether there is a currentEvent
+   * Takes portfolio data from the form and sends the POST request to update the portfolio data
    */
-  saveEvent() {
-    if (this.currentEvent) {
-      const updateData: any = {};
+  savePortfolio() {
+    const updateData: any = {};
 
-      updateData.id = this.currentEvent.eventID as unknown as number;
+    updateData.id = this.currentUser.id as unknown as number;
 
-      // these are required arguments, also assumed to already exist on the event
-      updateData.name = this.eventForm.get('name')!.value;
-      updateData.date = this.eventForm.get('date')!.value;
-      updateData.location = this.eventForm.get('location')!.value;
-      updateData.organizer = this.eventForm.get('organizer')!.value;
-      updateData.isRecurring = this.eventForm.get('recurring')!.value;
+    // these are required arguments, also assumed to already exist on the portfolio page
+    updateData.name = this.portfolioForm.get('name')!.value;
+    updateData.preferredName = this.portfolioForm.get('preferredName')!.value;
+    updateData.description = this.portfolioForm.get('description')!.value;
+    updateData.email = this.portfolioForm.get('email')!.value;
+    updateData.phone = this.portfolioForm.get('phone')!.value;
+    updateData.linkedin = this.portfolioForm.get('linkedin')!.value;
+    updateData.university_id = this.portfolioForm.get('university_id')!.value;
+    updateData.gpa = this.portfolioForm.get('gpa')!.value;
+    updateData.school_year = this.portfolioForm.get('school_year')!.value;
 
-      if (this.eventForm.get('description')) {
-        updateData.description = this.eventForm.get('description')!.value;
-      }
-      if (this.eventForm.get('link')) {
-        updateData.eventLink = this.eventForm.get('link')!.value;
-      }
-      if (this.eventForm.get('buttonLabel')) {
-        updateData.buttonLabel = this.eventForm.get('buttonLabel')!.value;
-      }
-
-      const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
-      this.http.post(url, updateData).subscribe(data => {
-        if (!data) {
-          window.alert("Something went wrong saving the event");
-          return;
-        }
-        window.alert("Event updated");
-        this.closeModal();
-      })
-    }
-    else {
-      const newData: any = {};
-
-      if (!this.eventForm.get('name')?.value) {
-        window.alert("Please add an event name");
+    const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
+    this.http.post(url, updateData).subscribe(data => {
+      if (!data) {
+        window.alert("Something went wrong saving the portfolio");
         return;
       }
-      if (!this.eventForm.get('date')?.value) {
-        window.alert("Please set an event date");
-        return;
-      }
-
-      if (!this.eventForm.get('location')?.value ||
-          !this.eventForm.get('organizer')?.value) {
-        window.alert("Please fill out all event information");
-        return;
-      }
-
-      newData.name = this.eventForm.get('name')!.value;
-      newData.date = this.eventForm.get('date')!.value;
-      newData.location = this.eventForm.get('location')!.value;
-      newData.organizer = this.eventForm.get('organizer')!.value;
-      newData.isRecurring = this.eventForm.get('recurring')!.value;
-
-      if (this.eventForm.get('description')) {
-        newData.description = this.eventForm.get('description')!.value;
-      }
-      if (this.eventForm.get('link')) {
-        newData.eventLink = this.eventForm.get('link')!.value;
-      }
-      if (this.eventForm.get('buttonLabel')) {
-        newData.buttonLabel = this.eventForm.get('buttonLabel')!.value;
-      }
-
-
-      const url = constructBackendRequest(Endpoints.CREATE_EVENT);
-      this.http.post(url, newData).subscribe(data => {
-        if (!data) {
-          window.alert("Something went wrong creating the event");
-          return;
-        }
-        window.alert("Event created");
-        this.closeModal();
-      })
-    }
+      window.alert("Portfolio updated");
+      this.closeModal();
+    })
   }
-
 }
