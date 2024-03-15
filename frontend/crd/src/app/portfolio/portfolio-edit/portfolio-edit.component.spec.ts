@@ -10,9 +10,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { Event } from "../../../domain/Event";
 import { of } from 'rxjs';
 import { Endpoints, constructBackendRequest } from 'src/app/util/http-helper';
+import { User } from 'src/app/security/domain/user';
 
 
 describe('PortfolioEditComponent', () => {
@@ -57,7 +57,7 @@ describe('PortfolioEditComponent', () => {
   it('should build form from event', () => {
     const testDate = new Date().toDateString();
 
-    component.currentEvent = new Event({
+    component.currentUser = new User({
       name: "name",
       description: "description",
       date: testDate,
@@ -82,7 +82,7 @@ describe('PortfolioEditComponent', () => {
       recurring: [true],
     });
 
-    expect(component.eventForm.get('description')!.value).toEqual(sampleForm.get('description')!.value);
+    expect(component.portfolioForm.get('description')!.value).toEqual(sampleForm.get('description')!.value);
     expect(component.eventForm.get('date')!.value).toEqual(sampleForm.get('date')!.value);
     expect(component.eventForm.get('recurring')!.value).toEqual(sampleForm.get('recurring')!.value);
   });
