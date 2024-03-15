@@ -16,7 +16,7 @@ export class PortfolioEditComponent implements OnInit {
 
   eventForm!: FormGroup;
   public currentEvent: Event | undefined;
-  public eventName: string = '';
+  public name: string = '';
 
 
   constructor(
@@ -24,13 +24,7 @@ export class PortfolioEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     public http: HttpClient,
     @Inject(MAT_DIALOG_DATA) private modalData: any,
-  ) {
-
-    if (this.modalData.event) {
-      this.currentEvent = this.modalData.event;
-      this.eventName = this.modalData.event.name;
-    }
-  }
+  ) {}
 
   ngOnInit() { 
     this.createForm();
@@ -42,8 +36,8 @@ export class PortfolioEditComponent implements OnInit {
   createForm() {
     if (this.currentEvent) {
       this.eventForm = this.formBuilder.group({
-        name: [this.eventName],
-        date: [this.currentEvent.date],
+        name: [this.name],
+        preferredName: [this.currentEvent.date],
         description: [this.currentEvent.description],
         location: [this.currentEvent.location],
         organizer: [this.currentEvent.organizer],
@@ -99,7 +93,7 @@ export class PortfolioEditComponent implements OnInit {
         updateData.buttonLabel = this.eventForm.get('buttonLabel')!.value;
       }
 
-      const url = constructBackendRequest(Endpoints.EDIT_EVENT);
+      const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
       this.http.post(url, updateData).subscribe(data => {
         if (!data) {
           window.alert("Something went wrong saving the event");
