@@ -15,10 +15,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ProfileModule } from "./profile/profile.module";
 import { MilestonesPageModule } from "./milestones-page/milestones-page.module";
 import { OswegoLogoModule } from "./oswego-logo/oswego-logo.module";
 import { AuthInterceptor } from './security/interceptors/auth-interceptor';
+import { TasksModule } from './tasks/tasks.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { LoginPageModule } from './security/login-page/login-page.module';
 import { LogoutButtonModule } from './security/logout-button/logout-button.module';
@@ -34,6 +34,10 @@ import { MilestoneCreateModalModule } from './admin/milestone-main-page/mileston
 import { UsersPageModule } from "./users-page/users-page.module";
 import { SignupPageModule } from './security/signup-page/signup-page.module';
 import {EventImageModalModule} from "./admin/event-image-modal/event-image-modal.module";
+import { TasksModalModule } from './tasks-modal/tasks-modal.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -70,11 +74,11 @@ import {EventImageModalModule} from "./admin/event-image-modal/event-image-modal
     LogoutButtonModule,
     DashboardModule,
     PortfolioModule,
-    ProfileModule,
     MilestonesPageModule,
     UsersPageModule,
     MatCardModule,
     MatTabsModule,
+    TasksModule,
     RouterModule,
     BrowserAnimationsModule,
     OswegoLogoModule,
@@ -88,6 +92,10 @@ import {EventImageModalModule} from "./admin/event-image-modal/event-image-modal
     TaskEditModalModule,
     EventMainPageModule,
     MilestoneCreateModalModule,
+    MilestoneCreateModalModule,
+    MatButtonModule,
+    MatDialogModule,
+    TasksModalModule,
     SignupPageModule,
     EventImageModalModule,
   ],
@@ -121,3 +129,4 @@ import {EventImageModalModule} from "./admin/event-image-modal/event-image-modal
   bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule { }
+
