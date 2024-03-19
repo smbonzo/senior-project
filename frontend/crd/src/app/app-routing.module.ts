@@ -13,10 +13,12 @@ import {UsersPageComponent} from "./users-page/users-page.component";
 import { SignupPageComponent } from './security/signup-page/signup-page.component';
 import { EventMainPageComponent } from './admin/event-main-page/event-main-page.component';
 import {NotFoundComponent} from "./not-found/not-found.component";
+import { PortfolioEditComponent } from './portfolio/portfolio-edit/portfolio-edit.component';
 
 const studentRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'portfolio', component: PortfolioComponent, canActivate: [authGuard]},
+  {path: 'edit-portfolio', component: PortfolioEditComponent, canActivate: [authGuard]},
   {path: 'milestones', component: MilestonesPageComponent, canActivate: [authGuard]},
 ]
 
