@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { AuthService } from '../security/auth.service';
 import { LangUtils } from '../util/lang-utils';
 import { User } from '../security/domain/user';
@@ -9,6 +9,7 @@ import { SubmissionService } from '../submissions/submission.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, mergeMap, tap, zipWith } from 'rxjs';
 import { UserService } from '../security/user.service';
+import { PortfolioEditComponent } from './portfolio-edit/portfolio-edit.component';
 
 @Component({
   selector: 'app-portfolio',
@@ -24,8 +25,30 @@ export class PortfolioComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    public matDialog: MatDialog,
   ) { }
+
+  /**
+   * Opens the edit modal and sends it the event object
+   */
+  openPortfolioEditModal(user: User | null) {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "75%";
+    dialogConfig.width = "50%";
+    dialogConfig.data = {
+      user: user
+    }
+
+    const modalDialog = this.matDialog.open(PortfolioEditComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(result => {
+      this.ngOnInit();  // refresh to show new event
+    })
+  }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(

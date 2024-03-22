@@ -58,10 +58,15 @@ describe('PortfolioEditComponent', () => {
     const testDate = new Date().toDateString();
 
     component.currentUser = new User({
-      name: "name",
+      id: '1',
+      firstName: "first",
+      lastName: "last",
+      preferredName: 'name',
       description: "description",
+      email: 'email',
+      phone: 'phone',
+      linkedin: 'linked',
       date: testDate,
-      id: 1,
       recurring: true,
       organizer: "organizer",
       location: "location",

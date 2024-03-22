@@ -35,17 +35,23 @@ export class PortfolioEditComponent implements OnInit {
    */
   createForm() {
     this.portfolioForm = this.formBuilder.group({
-      name: [null, Validators.required],
-      preferredName: [null, Validators.required],
+      name: [null],
+      preferredName: [null],
       description: [null],
-      location: [null, Validators.required],
-      organizer: [null, Validators.required],
-      link: [null],
-      buttonLabel: ['More Info'],
-      recurring: [false],
+      email: [null],
+      phone: [null],
+      linkedIn: [null],
     });
   }
 
+
+  addSkill() {  
+    // this.quantities().push(this.newQuantity());  
+  }  
+
+  removeSkill(i:number) {  
+    // this.quantities().removeAt(i);  
+  }  
 
   closeModal() {
     this.dialogRef.close();
@@ -67,9 +73,9 @@ export class PortfolioEditComponent implements OnInit {
       updateData.email = this.portfolioForm.get('email')!.value;
       updateData.phone = this.portfolioForm.get('phone')!.value;
       updateData.linkedin = this.portfolioForm.get('linkedin')!.value;
-      updateData.university_id = this.portfolioForm.get('university_id')!.value;
-      updateData.gpa = this.portfolioForm.get('gpa')!.value;
-      updateData.school_year = this.portfolioForm.get('school_year')!.value;
+      updateData.studentDetails.university_id = this.portfolioForm.get('university_id')!.value;
+      updateData.studentDetails.gpa = this.portfolioForm.get('gpa')!.value;
+      updateData.studentDetails.school_year = this.portfolioForm.get('school_year')!.value;
 
       const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
       this.http.post(url, updateData).subscribe(data => {
