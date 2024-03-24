@@ -24,7 +24,11 @@ export class PortfolioEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     public http: HttpClient,
     @Inject(MAT_DIALOG_DATA) private modalData: any,
-  ) {}
+  ) {
+    if (this.modalData.currentUser) {
+      this.currentUser = this.modalData.currentUser;
+    }
+  }
 
   ngOnInit() { 
     this.createForm();
@@ -34,14 +38,17 @@ export class PortfolioEditComponent implements OnInit {
    * Creates the FormGroup either using the provided portfolio data or blank
    */
   createForm() {
-    this.portfolioForm = this.formBuilder.group({
-      name: [null],
-      preferredName: [null],
-      description: [null],
-      email: [null],
-      phone: [null],
-      linkedIn: [null],
-    });
+    if(this.currentUser){
+      this.portfolioForm = this.formBuilder.group({
+        name: [this.currentUser.name],
+        preferredName: [this.currentUser.preferredName],
+        description: [this.currentUser.studentDetails?.description],
+        email: [this.currentUser.email],
+        phone: [this.currentUser.phoneNumber],
+        linkedIn: [this.currentUser.linkedin],
+        
+      });
+    }
   }
 
 
@@ -73,9 +80,9 @@ export class PortfolioEditComponent implements OnInit {
       updateData.email = this.portfolioForm.get('email')!.value;
       updateData.phone = this.portfolioForm.get('phone')!.value;
       updateData.linkedin = this.portfolioForm.get('linkedin')!.value;
-      updateData.studentDetails.university_id = this.portfolioForm.get('university_id')!.value;
-      updateData.studentDetails.gpa = this.portfolioForm.get('gpa')!.value;
-      updateData.studentDetails.school_year = this.portfolioForm.get('school_year')!.value;
+      updateData.university_id = this.portfolioForm.get('university_id')!.value;
+      updateData.gpa = this.portfolioForm.get('gpa')!.value;
+      updateData.school_year = this.portfolioForm.get('school_year')!.value;
 
       const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
       this.http.post(url, updateData).subscribe(data => {

@@ -46,7 +46,7 @@ export class PortfolioComponent implements OnInit {
     const modalDialog = this.matDialog.open(PortfolioEditComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
-      this.ngOnInit();  // refresh to show new event
+      this.ngOnInit();  // refresh to show new portfolio
     })
   }
 
