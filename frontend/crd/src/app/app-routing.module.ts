@@ -21,7 +21,6 @@ const studentRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'portfolio', component: PortfolioComponent, canActivate: [authGuard]},
   {path: 'edit-portfolio', component: PortfolioEditComponent, canActivate: [authGuard]},
-  {path: 'milestones', component: MilestonesComponent, canActivate: [authGuard]},
   {path: 'settings', component: SettingsPageComponent, canActivate: [authGuard]},
   {path: 'milestones', component: MilestonesComponent, canActivate: [authGuard]},
 ]
