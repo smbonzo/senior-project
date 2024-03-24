@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PortfolioComponent } from "./portfolio/portfolio.component";
-import { MilestonesPageComponent } from "./milestones-page/milestones-page.component";
 import { ApiDocumentationsComponent } from "./api-documentations/api-documentations.component";
 import { LoginPageComponent } from './security/login-page/login-page.component';
 import {adminRoleGuard, authGuard, facultyRoleGuard, noAuthGuard, signedUpGuard} from './security/auth-guard';
@@ -12,21 +11,26 @@ import { TaskMainPageComponent } from './admin/task-main-page/task-main-page.com
 import {UsersPageComponent} from "./users-page/users-page.component";
 import { SignupPageComponent } from './security/signup-page/signup-page.component';
 import { EventMainPageComponent } from './admin/event-main-page/event-main-page.component';
+import {SettingsPageComponent} from "./settings/settings-page.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import { PortfolioEditComponent } from './portfolio/portfolio-edit/portfolio-edit.component';
+import { MilestonesComponent } from './milestones-page/milestones/milestones.component';
+import { MilestonesFacultyComponent } from './milestones-page/milestones-faculty/milestones-faculty.component';
 
 const studentRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'portfolio', component: PortfolioComponent, canActivate: [authGuard]},
   {path: 'edit-portfolio', component: PortfolioEditComponent, canActivate: [authGuard]},
-  {path: 'milestones', component: MilestonesPageComponent, canActivate: [authGuard]},
+  {path: 'milestones', component: MilestonesComponent, canActivate: [authGuard]},
+  {path: 'settings', component: SettingsPageComponent, canActivate: [authGuard]},
+  {path: 'milestones', component: MilestonesComponent, canActivate: [authGuard]},
 ]
 
 const facultyRoutes: Routes = [
   {path: 'faculty/users', component: UsersPageComponent, canActivate: [authGuard, facultyRoleGuard]},
   {path: 'faculty/portfolio', component: PortfolioComponent, canActivate: [authGuard, facultyRoleGuard]},
   {path: 'faculty/portfolio/:id', component: PortfolioComponent, canActivate: [authGuard, facultyRoleGuard]},
-  {path: 'faculty/milestones/:id', component: MilestonesPageComponent, canActivate: [authGuard, facultyRoleGuard]},
+  {path: 'faculty/milestones/:id', component: MilestonesFacultyComponent, canActivate: [authGuard, facultyRoleGuard]},
 ]
 
 const adminRoutes: Routes = [
