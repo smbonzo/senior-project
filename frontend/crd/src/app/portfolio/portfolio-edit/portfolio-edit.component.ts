@@ -16,7 +16,7 @@ import { Skill } from 'src/domain/Skill';
 export class PortfolioEditComponent implements OnInit {
 
   portfolioForm!: FormGroup;
-  public currentUser: User | undefined;
+  public currentUser: User = User.makeEmpty();
   public name: string = '';
 
 
@@ -40,9 +40,9 @@ export class PortfolioEditComponent implements OnInit {
    * Creates the FormGroup either using the provided portfolio data or blank
    */
   createForm() {
-    if(!this.currentUser){
-      this.currentUser = User.makeEmpty()
-    }
+    // if(!this.currentUser){
+    //   this.currentUser = User.makeEmpty()
+    // }
     this.portfolioForm = this.formBuilder.group({
       name: [this.currentUser.name],
       preferredName: [this.currentUser.preferredName],
@@ -53,26 +53,37 @@ export class PortfolioEditComponent implements OnInit {
       university_id: [this.currentUser.studentDetails?.universityId],
       gpa: [this.currentUser.studentDetails?.gpa],
       school_year: [this.currentUser.studentDetails?.yearLevel],
-      skills: [this.currentUser.studentDetails?.skills],
+      skills: this.formBuilder.array([this.currentUser.studentDetails?.skills]),
+      // [this.currentUser.studentDetails?.skills]
     });
   }
 
-  newSkill(): FormGroup {  
+  skills() : FormArray {
+    console.log("Skills has been used");
+    return this.portfolioForm.get("skills") as FormArray  
+  }  
+
+  newSkill(): FormGroup {
+    console.log("A NEW SKILL HAS BEEN ENTERED");
     return this.formBuilder.group({  
       skillName: ""
     })  
   }  
 
   addSkill() {
-    if(this.currentUser){
-      this.currentUser.studentDetails?.skills.push(Skill.makeEmpty());
-    }
+    // if(this.currentUser){
+      // this.currentUser.studentDetails?.skills.push(this.newSkill());
+      console.log("ADD SKILL HAS BEEN CLICKED");
+      this.skills().push(this.newSkill());
+      console.log("SKILLS: " + this.newSkill());
+    // }
   }
 
   removeSkill(i:number) { 
-    if(this.currentUser){
-      this.currentUser.studentDetails?.skills.slice(i);
-    }
+    // if(this.currentUser){
+      // this.currentUser.studentDetails?.skills.slice(i);
+      this.skills().removeAt(i);
+    // }
   }
 
   closeModal() {

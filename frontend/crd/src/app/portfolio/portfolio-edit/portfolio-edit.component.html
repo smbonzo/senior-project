@@ -45,8 +45,9 @@
                 <th colspan="2">Skills:</th>  
                 <th width="150px"><button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button></th>  
             </tr>  
-            <tr *ngFor="let skill of currentUser?.studentDetails?.skills; let i=index" [formGroupName]="i">  
+            <tr *ngFor="let skill of skills().controls; let i=index" [formGroupName]="i">  
                 <td>
+                    Skill Name
                     <input type="text" formControlName="skillName" class="form-control">  
                 </td>  
                 <td>  

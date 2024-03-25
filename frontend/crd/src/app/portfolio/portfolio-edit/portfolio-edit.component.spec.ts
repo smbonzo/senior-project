@@ -54,7 +54,7 @@ describe('PortfolioEditComponent', () => {
     formBuilder = TestBed.inject(FormBuilder);
   });
 
-  it('should build form from event', () => {
+  it('should build form from user', () => {
     const testDate = new Date().toDateString();
 
     component.currentUser = new User({
@@ -62,17 +62,14 @@ describe('PortfolioEditComponent', () => {
       firstName: "first",
       lastName: "last",
       preferredName: 'name',
-      description: "description",
       email: 'email',
       phone: 'phone',
       linkedin: 'linked',
-      date: testDate,
-      recurring: true,
-      organizer: "organizer",
-      location: "location",
-      eventLink: "sample link",
-      buttonLabel: "test",
-      imageId: 1,
+      studentDetails: {
+        id: '1',
+        universityId: '2000',
+        description: "description",
+      }
     });
     component.createForm();
 
@@ -87,7 +84,7 @@ describe('PortfolioEditComponent', () => {
       recurring: [true],
     });
 
-    expect(component.portfolioForm.get('description')!.value).toEqual(sampleForm.get('description')!.value);
+    expect(component.portfolioForm.get('preferredName')!.value).toEqual(sampleForm.get('preferredName')!.value);
     expect(component.eventForm.get('date')!.value).toEqual(sampleForm.get('date')!.value);
     expect(component.eventForm.get('recurring')!.value).toEqual(sampleForm.get('recurring')!.value);
   });
