@@ -40,26 +40,21 @@
             <input matInput formControlName="school_year">
         </mat-form-field>
         <!-- List all skills with option to add or delete -->
-        <!-- List all language skills with option to add or delete -->
-        <!-- <table class="table table-bordered" formArrayName="skills">  
+        <table class="table table-bordered" formArrayName="skills">  
             <tr>  
-                <th colspan="2">Add Multiple Quantity:</th>  
-                <th width="150px"><button type="button" (click)="addSkill()" class="btn btn-primary">Add Project</button></th>  
+                <th colspan="2">Skills:</th>  
+                <th width="150px"><button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button></th>  
             </tr>  
-            <tr *ngFor="let skill of currentUser.studentDetails?.skills; let i=index" [formGroupName]="i">  
-                <td>  
-                    Quantity :  
-                    <input type="text" formControlName="qty" class="form-control">  
-                </td>  
-                <td>  
-                    Price:  
-                    <input type="text" formControlName="price" class="form-control">  
+            <tr *ngFor="let skill of currentUser?.studentDetails?.skills; let i=index" [formGroupName]="i">  
+                <td>
+                    <input type="text" formControlName="skillName" class="form-control">  
                 </td>  
                 <td>  
                     <button (click)="removeSkill(i)" class="btn btn-danger">Remove</button>  
                 </td>  
             </tr>  
-        </table>   -->
+        </table>
+        <!-- List all language skills with option to add or delete -->
         <!-- List all projects with option to edit, add, or delete -->
         <!-- List all jobs with option to edit, add, or delete -->
         <!-- List all coops with option to edit, add, or delete -->

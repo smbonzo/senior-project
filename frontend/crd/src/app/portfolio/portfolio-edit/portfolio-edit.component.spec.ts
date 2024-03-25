@@ -106,7 +106,7 @@ describe('PortfolioEditComponent', () => {
       recurring: [false],
     });
 
-    expect(component.eventForm).toBeTruthy();
+    expect(component.portfolioForm).toBeTruthy();
 
     expect(component.eventForm.get('description')).toBeTruthy();
 
@@ -119,11 +119,11 @@ describe('PortfolioEditComponent', () => {
   it('should save event', () => {
     const testDate = new Date().toDateString();
 
-    const testEvent = new Event({
+    const testUser = new User({
       name: "name",
       description: "description",
       date: testDate,
-      id: 1,
+      id: '1',
       recurring: true,
       organizer: "organizer",
       location: "location",
@@ -144,7 +144,7 @@ describe('PortfolioEditComponent', () => {
       buttonLabel: "test",
     }
 
-    component.currentEvent = testEvent;
+    component.currentUser = testUser;
     component.eventName = "name";
     component.createForm();
 
@@ -152,7 +152,7 @@ describe('PortfolioEditComponent', () => {
     const url = constructBackendRequest(Endpoints.EDIT_EVENT);
     let spyClose = spyOn(component, 'closeModal');
 
-    component.saveEvent();
+    component.savePortfolio();
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(url, testData);
     expect(spyClose).toHaveBeenCalled();
@@ -185,7 +185,7 @@ describe('PortfolioEditComponent', () => {
       buttonLabel: "test",
     }
 
-    component.eventForm = formBuilder.group({
+    component.portfolioForm = formBuilder.group({
       name: ["name"],
       date: [new Date(testDate)], //how it's done when building events
       description: ["description"],
@@ -200,7 +200,7 @@ describe('PortfolioEditComponent', () => {
     const url = constructBackendRequest(Endpoints.CREATE_EVENT);
     let spyClose = spyOn(component, 'closeModal');
 
-    component.saveEvent();
+    component.savePortfolio();
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(url, testData);
     expect(spyClose).toHaveBeenCalled();
@@ -209,11 +209,11 @@ describe('PortfolioEditComponent', () => {
   it('should show error', () => {
     const testDate = new Date().toDateString();
 
-    const testEvent = new Event({
+    const testPortfolio = new User({
       name: "name",
       description: "description",
       date: testDate,
-      id: 1,
+      id: '1',
       recurring: true,
       organizer: "organizer",
       location: "location",
@@ -222,7 +222,7 @@ describe('PortfolioEditComponent', () => {
       imageId: 1,
     });
 
-    component.eventForm = formBuilder.group({
+    component.portfolioForm = formBuilder.group({
       name: ["name"],
       date: [new Date(testDate)], //how it's done when building events
       description: ["description"],
@@ -236,7 +236,7 @@ describe('PortfolioEditComponent', () => {
     let spy = spyOn(component.http, 'post').and.returnValue(of(null));
     let spyWindow = spyOn(window, 'alert');
 
-    component.saveEvent();
+    component.savePortfolio();
     expect(spy).toHaveBeenCalled();
     expect(spyWindow).toHaveBeenCalled();
   });

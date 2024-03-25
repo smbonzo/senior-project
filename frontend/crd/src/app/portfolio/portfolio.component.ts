@@ -51,6 +51,10 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.userService.getUser().subscribe((users: User[]) => {
+      // this.user = users;
+    // });
+
     this.route.paramMap.pipe(
       mergeMap((map: ParamMap) => {
         console.log(map);
