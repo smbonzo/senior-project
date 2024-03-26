@@ -60,7 +60,7 @@ export class PortfolioEditComponent implements OnInit {
 
   skills() : FormArray {
     console.log("Skills has been used");
-    return this.portfolioForm.get("skills") as FormArray  
+    return this.portfolioForm.get("skills") as FormArray
   }  
 
   newSkill(): FormGroup {
