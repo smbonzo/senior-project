@@ -73,9 +73,7 @@ export class PortfolioEditComponent implements OnInit {
   addSkill() {
     // if(this.currentUser){
       // this.currentUser.studentDetails?.skills.push(this.newSkill());
-      console.log("ADD SKILL HAS BEEN CLICKED");
       this.skills().push(this.newSkill());
-      console.log("SKILLS: " + this.newSkill());
     // }
   }
 
