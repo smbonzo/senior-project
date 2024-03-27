@@ -33,6 +33,7 @@ export class PortfolioComponent implements OnInit {
    * Opens the edit modal and sends it the event object
    */
   openPortfolioEditModal(user: User | null) {
+    console.log(user);
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
@@ -51,9 +52,6 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userService.getUser().subscribe((users: User[]) => {
-      // this.user = users;
-    // });
 
     this.route.paramMap.pipe(
       mergeMap((map: ParamMap) => {

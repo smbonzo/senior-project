@@ -16,7 +16,7 @@ import { Skill } from 'src/domain/Skill';
 export class PortfolioEditComponent implements OnInit {
 
   portfolioForm!: FormGroup;
-  public currentUser: User = User.makeEmpty();
+  public currentUser: User;
   public name: string = '';
 
 
@@ -26,9 +26,11 @@ export class PortfolioEditComponent implements OnInit {
     public http: HttpClient,
     @Inject(MAT_DIALOG_DATA) private modalData: any,
   ) {
-    if (this.modalData.currentUser) {
+    if (this.modalData.user) {
       this.currentUser = this.modalData.user;
       this.name = this.modalData.user.firstName;
+    } else {
+      this.currentUser = User.makeEmpty();
     }
   }
 
@@ -40,9 +42,7 @@ export class PortfolioEditComponent implements OnInit {
    * Creates the FormGroup either using the provided portfolio data or blank
    */
   createForm() {
-    // if(!this.currentUser){
-    //   this.currentUser = User.makeEmpty()
-    // }
+    console.log("BEFORE");
     this.portfolioForm = this.formBuilder.group({
       name: [this.currentUser.name],
       preferredName: [this.currentUser.preferredName],
@@ -53,35 +53,155 @@ export class PortfolioEditComponent implements OnInit {
       university_id: [this.currentUser.studentDetails?.universityId],
       gpa: [this.currentUser.studentDetails?.gpa],
       school_year: [this.currentUser.studentDetails?.yearLevel],
-      skills: this.formBuilder.array([this.currentUser.studentDetails?.skills]),
-      // [this.currentUser.studentDetails?.skills]
+      degreePrograms: this.formBuilder.array([]),
+      skills: this.formBuilder.array([]),
+      projects: this.formBuilder.array([]),
+      jobs: this.formBuilder.array([]),
+      clubs: this.formBuilder.array([]),
+      interests: this.formBuilder.array([]),
     });
+    this.currentUser.studentDetails?.degreePrograms.forEach((degreeProgram) => this.degreePrograms().push(this.formBuilder.group({
+      name: degreeProgram.name,
+    })));
+    this.currentUser.studentDetails?.skills.forEach((skill) => this.skills().push(this.formBuilder.group({
+      name: skill.name,
+    })));
+    this.currentUser.studentDetails?.projects.forEach((project) => this.projects().push(this.formBuilder.group({
+      name: project.name,
+      description: project.description,
+      startDate: project.startDate,
+      endDate: project.endDate,
+    })));
+    this.currentUser.studentDetails?.jobs.forEach((job) => this.jobs().push(this.formBuilder.group({
+      name: job.name,
+      description: job.description,
+      startDate: job.startDate,
+      endDate: job.endDate,
+    })));
+    this.currentUser.studentDetails?.clubs.forEach((club) => this.clubs().push(this.formBuilder.group({
+      name: club.name,
+      startDate: club.startDate,
+      endDate: club.endDate,
+    })));
+    this.currentUser.studentDetails?.interests.forEach((interest) => this.interests().push(this.formBuilder.group({
+      name: interest.name,
+    })));
   }
 
-  skills() : FormArray {
-    console.log("Skills has been used");
+  degreePrograms(): FormArray {
+    return this.portfolioForm.get("degreePrograms") as FormArray
+  }  
+
+  newDegreeProgram(): FormGroup {
+    return this.formBuilder.group({
+      name: "",
+    })  
+  }  
+
+  addDegreeProgram() {
+      this.degreePrograms().push(this.newDegreeProgram());
+  }
+
+  removeDegreeProgram(i:number) {
+      this.degreePrograms().removeAt(i);
+  }
+
+  skills(): FormArray {
     return this.portfolioForm.get("skills") as FormArray
   }  
 
   newSkill(): FormGroup {
-    console.log("A NEW SKILL HAS BEEN ENTERED");
-    return this.formBuilder.group({  
-      skillName: ""
+    return this.formBuilder.group({
+      name: "",
     })  
   }  
 
   addSkill() {
-    // if(this.currentUser){
-      // this.currentUser.studentDetails?.skills.push(this.newSkill());
       this.skills().push(this.newSkill());
-    // }
   }
 
-  removeSkill(i:number) { 
-    // if(this.currentUser){
-      // this.currentUser.studentDetails?.skills.slice(i);
+  removeSkill(i:number) {
       this.skills().removeAt(i);
-    // }
+  }
+
+  projects(): FormArray {
+    return this.portfolioForm.get("projects") as FormArray
+  }  
+
+  newProject(): FormGroup {
+    return this.formBuilder.group({
+      name: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+    })  
+  }  
+
+  addProject() {
+      this.projects().push(this.newProject());
+  }
+
+  removeProject(i:number) {
+      this.projects().removeAt(i);
+  }
+
+  jobs(): FormArray {
+    return this.portfolioForm.get("jobs") as FormArray
+  }  
+
+  newJob(): FormGroup {
+    return this.formBuilder.group({
+      name: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+    })  
+  }  
+
+  addJob() {
+      this.jobs().push(this.newJob());
+  }
+
+  removeJob(i:number) {
+      this.jobs().removeAt(i);
+  }
+
+  clubs(): FormArray {
+    return this.portfolioForm.get("clubs") as FormArray
+  }  
+
+  newClub(): FormGroup {
+    return this.formBuilder.group({
+      name: "",
+      startDate: "",
+      endDate: "",
+    })  
+  }  
+
+  addClub() {
+      this.clubs().push(this.newClub());
+  }
+
+  removeClub(i:number) {
+      this.clubs().removeAt(i);
+  }
+
+  interests(): FormArray {
+    return this.portfolioForm.get("interests") as FormArray
+  }  
+
+  newInterest(): FormGroup {
+    return this.formBuilder.group({  
+      name: "",
+    })  
+  }  
+
+  addInterest() {
+      this.interests().push(this.newInterest());
+  }
+
+  removeInterest(i:number) {
+      this.interests().removeAt(i);
   }
 
   closeModal() {
@@ -101,11 +221,13 @@ export class PortfolioEditComponent implements OnInit {
     updateData.id = this.currentUser.id as unknown as number;
     
     if(this.currentUser.studentDetails){
-      updateData.studentDetails.description = this.portfolioForm.get('description')!.value;
-      updateData.studentDetails.university_id = this.portfolioForm.get('university_id')!.value;
-      updateData.studentDetails.gpa = this.portfolioForm.get('gpa')!.value;
-      updateData.studentDetails.school_year = this.portfolioForm.get('school_year')!.value;
-      updateData.studentDetails.skills = this.portfolioForm.get('skills') as FormArray
+      updateData.studentDetails = {
+        description: this.portfolioForm.get('description')!.value,
+        university_id: this.portfolioForm.get('university_id')!.value,
+        gpa: this.portfolioForm.get('gpa')!.value,
+        school_year: this.portfolioForm.get('school_year'),
+        skills: this.skills().value,
+      }
     }
     // these are required arguments, also assumed to already exist on the portfolio page
     updateData.name = this.portfolioForm.get('name')!.value;

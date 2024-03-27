@@ -26,6 +26,21 @@
             <input matInput formControlName="linkedin">
         </mat-form-field>
         <!-- List all majors with option to edit, add, or delete -->
+        <table class="table table-bordered" formArrayName="degreePrograms">  
+            <tr>  
+                <th colspan="2">Majors:</th>  
+                <th width="150px"><button type="button" (click)="addDegreeProgram()" class="btn btn-primary">Add Degree Program</button></th>  
+            </tr>  
+            <tr *ngFor="let degreeProgram of degreePrograms().controls; let i=index" [formGroupName]="i">  
+                <td>
+                    Major Name
+                    <input type="text" formControlName="name" class="form-control">  
+                </td>  
+                <td>  
+                    <button (click)="removeDegreeProgram(i)" class="btn btn-danger">Remove</button>  
+                </td>  
+            </tr>  
+        </table>
         <!-- List all minors with option to edit, add, or delete -->
         <mat-form-field>
             <mat-label>University ID</mat-label>
@@ -48,7 +63,7 @@
             <tr *ngFor="let skill of skills().controls; let i=index" [formGroupName]="i">  
                 <td>
                     Skill Name
-                    <input type="text" formControlName="skillName" class="form-control">  
+                    <input type="text" formControlName="name" class="form-control">  
                 </td>  
                 <td>  
                     <button (click)="removeSkill(i)" class="btn btn-danger">Remove</button>  
@@ -57,10 +72,102 @@
         </table>
         <!-- List all language skills with option to add or delete -->
         <!-- List all projects with option to edit, add, or delete -->
+        <table class="table table-bordered" formArrayName="projects">  
+            <tr>  
+                <th colspan="2">Projects:</th>  
+                <th width="150px"><button type="button" (click)="addProject()" class="btn btn-primary">Add Project</button></th>  
+            </tr>  
+            <tr *ngFor="let project of projects().controls; let i=index" [formGroupName]="i">  
+                <td>
+                    Project Name
+                    <input type="text" formControlName="name" class="form-control">
+                </td>
+                <td>
+                    Description
+                    <input type="text" formControlName="description" class="form-control">
+                </td>
+                <td>
+                    Start Date
+                    <input type="text" formControlName="startDate" class="form-control">
+                </td>
+                <td>
+                    End Date
+                    <input type="text" formControlName="endDate" class="form-control">
+                </td>
+                <td>  
+                    <button (click)="removeProject(i)" class="btn btn-danger">Remove</button>
+                </td>  
+            </tr>  
+        </table>
         <!-- List all jobs with option to edit, add, or delete -->
+        <table class="table table-bordered" formArrayName="jobs">  
+            <tr>  
+                <th colspan="2">Jobs:</th>  
+                <th width="150px"><button type="button" (click)="addJob()" class="btn btn-primary">Add Job</button></th>  
+            </tr>  
+            <tr *ngFor="let job of jobs().controls; let i=index" [formGroupName]="i">  
+                <td>
+                    Job Name
+                    <input type="text" formControlName="name" class="form-control">
+                </td>
+                <td>
+                    Description
+                    <input type="text" formControlName="description" class="form-control">
+                </td>
+                <td>
+                    Start Date
+                    <input type="text" formControlName="startDate" class="form-control">
+                </td>
+                <td>
+                    End Date
+                    <input type="text" formControlName="endDate" class="form-control">
+                </td>
+                <td>  
+                    <button (click)="removeJob(i)" class="btn btn-danger">Remove</button>
+                </td>  
+            </tr>  
+        </table>
         <!-- List all coops with option to edit, add, or delete -->
         <!-- List all clubs with option to edit, add, or delete -->
+        <table class="table table-bordered" formArrayName="clubs">  
+            <tr>  
+                <th colspan="2">Clubs:</th>  
+                <th width="150px"><button type="button" (click)="addClub()" class="btn btn-primary">Add Club</button></th>  
+            </tr>  
+            <tr *ngFor="let club of clubs().controls; let i=index" [formGroupName]="i">  
+                <td>
+                    Club Name
+                    <input type="text" formControlName="name" class="form-control">
+                </td>
+                <td>
+                    Start Date
+                    <input type="text" formControlName="startDate" class="form-control">
+                </td>
+                <td>
+                    End Date
+                    <input type="text" formControlName="endDate" class="form-control">
+                </td>
+                <td>  
+                    <button (click)="removeClub(i)" class="btn btn-danger">Remove</button>
+                </td>  
+            </tr>  
+        </table>
         <!-- List all interests with option to edit, add, or delete -->
+        <table class="table table-bordered" formArrayName="interests">  
+            <tr>  
+                <th colspan="2">Interests:</th>  
+                <th width="150px"><button type="button" (click)="addInterest()" class="btn btn-primary">Add Interest</button></th>  
+            </tr>  
+            <tr *ngFor="let interest of interests().controls; let i=index" [formGroupName]="i">  
+                <td>
+                    Interest Name
+                    <input type="text" formControlName="name" class="form-control">  
+                </td>  
+                <td>  
+                    <button (click)="removeInterest(i)" class="btn btn-danger">Remove</button>  
+                </td>  
+            </tr>  
+        </table>
         <br />
         <button mat-button type="submit" [disabled]="!portfolioForm.status">Submit</button>
     </form>
