@@ -1,0 +1,15 @@
+student:
+  email: "crdoswegostudent@gmail.com"
+  password: "pzlh mzen askr sxdh"
+
+faculty:
+  email: "crdoswegofaculty@gmail.com"
+  password: "qnzp tmor brta uqlh"
+
+admin:
+  email: "crdoswegoadm1n@gmail.com"
+  password: "oiyr xuol zaue plyp"
+
+database:
+  user: root
+  password: TheGeniusCrab#21!
