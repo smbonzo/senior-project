@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FileUploadModule } from 'src/app/file-upload/file-upload.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { SubmissionContentModule } from '../submission-content/submission-content.module';
 
 
 
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    SubmissionContentModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,

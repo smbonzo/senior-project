@@ -1,7 +1,0 @@
-ALTER TABLE artifact
-ADD COLUMN user_id BINARY(16);
-
-ALTER TABLE artifact
-ADD CONSTRAINT FK_USER_ID
-FOREIGN KEY (user_id)
-REFERENCES user (id);
