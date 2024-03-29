@@ -96,6 +96,17 @@ public class UserHandler {
     }
 
     /**
+     * Updates the user
+     * @param request
+     * @return the updated user
+     */
+    public Mono<ServerResponse> updateUser(ServerRequest request) {
+        return request.bodyToMono(User.class)
+            .flatMap((user)->service.createOrUpdateUser(user))
+            .flatMap((user) -> ServerResponse.ok().bodyValue(user));
+    }
+
+    /**
      * The error for if updating a role fails
      */
     private static final Mono<User> UPDATE_ROLE_ERROR = Mono.error(new ResponseStatusException(HttpStatus.FORBIDDEN));

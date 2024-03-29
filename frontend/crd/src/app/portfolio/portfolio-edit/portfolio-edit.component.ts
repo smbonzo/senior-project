@@ -225,8 +225,8 @@ export class PortfolioEditComponent implements OnInit {
         description: this.portfolioForm.get('description')!.value,
         university_id: this.portfolioForm.get('university_id')!.value,
         gpa: this.portfolioForm.get('gpa')!.value,
-        school_year: this.portfolioForm.get('school_year'),
-        skills: this.skills().value,
+        school_year: this.portfolioForm.get('school_year')!.value,
+        // skills: this.skills().value,
       }
     }
     // these are required arguments, also assumed to already exist on the portfolio page
@@ -237,7 +237,7 @@ export class PortfolioEditComponent implements OnInit {
     updateData.linkedin = this.portfolioForm.get('linkedin')!.value;
 
     const url = constructBackendRequest(Endpoints.EDIT_PORTFOLIO);
-    this.http.post(url, updateData).subscribe(data => {
+    this.http.put(url, updateData).subscribe(data => {
       if (!data) {
         window.alert("Something went wrong saving the portfolio");
         return;
