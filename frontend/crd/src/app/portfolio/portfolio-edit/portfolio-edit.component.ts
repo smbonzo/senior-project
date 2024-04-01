@@ -114,7 +114,7 @@ export class PortfolioEditComponent implements OnInit {
     return this.formBuilder.group({
       name: "",
     })  
-  }  
+  }
 
   addSkill() {
       this.skills().push(this.newSkill());
