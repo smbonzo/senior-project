@@ -11,7 +11,7 @@ $(document).ready(function() {
                     SUNY Oswego
                 </h3>
                 <h3>
-                    Partially Hydrated devs
+                    Partially hydrated Devs
                 </h3>
             </div>
 
@@ -23,6 +23,7 @@ $(document).ready(function() {
                     <li><a href="timesheet.html">Timesheet</a></li>
                     <li><a href="risks.html">Risks</a></li>
                     <li><a href="metrics.html">Metrics</a></li>
+                    <li><a href="presentations.html">Presentations</a></li>
                 </ul>
             </nav>
         </div>`
@@ -30,7 +31,7 @@ $(document).ready(function() {
 
     $("#footer").append(
         `<div class="footer-container">
-            Partially Hydrated devs - ${new Date().getFullYear()}
+            Partially hydrated Devs - ${new Date().getFullYear()}
         </div>`
     );
 });
